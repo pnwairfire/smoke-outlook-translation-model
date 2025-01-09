@@ -1,0 +1,9 @@
+{
+  "name": "jon-prompt-engineer",
+  "version": "1.0.0",
+  "services": {
+    "translate": {
+      "method": "GET",
+    }
+  }
+}
