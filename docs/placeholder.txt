@@ -1,0 +1,7 @@
+This folder is for various markdown documents that summarize information.
+Examples might include:
+
+- openai-resources.md
+- setting-up-a-model.md
+- preparing-training-data.md
+- ...

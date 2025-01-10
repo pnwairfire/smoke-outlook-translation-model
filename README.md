@@ -37,8 +37,18 @@ doubt be helpful but is not necessarily required. Training the ChatGPT model wil
 involve following instructions on the OpenAI website and writing javascript code
 to interact with the ChatGPT API. Github is used for version control.
 
+# Background
 
-# Background reading:
+In August of 2024, OpenAI announced the ability to fine-tune custom versions
+of ChatGPT: https://openai.com/index/gpt-4o-fine-tuning/
+
+This is potentially very useful for the USFS AirFire group's use of ChatGPT as
+a translation service. The main goal of this project is to learn more about
+this new functionality, try it out, and assess how difficult/expensive it would
+be to train (aka fine tune) a custom ChatGPT on our corpus of translated
+smoke outlooks.
+
+Additional resources:
 
 - https://platform.openai.com/docs/concepts
 - https://platform.openai.com/docs/guides/text-generation
@@ -46,3 +56,5 @@ to interact with the ChatGPT API. Github is used for version control.
 - https://simplified.com/blog/ai-writing/how-to-train-chatgpt
 - https://www.chatbase.co/blog/how-to-train-chatgpt-with-your-data
 - https://custom.mt/guide-how-to-fine-tune-gpt-35-for-translation/
+- https://platform.openai.com/docs/guides/fine-tuning
+- https://platform.openai.com/docs/api-reference/fine-tuning
