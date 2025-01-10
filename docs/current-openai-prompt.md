@@ -22,7 +22,7 @@ A `.env` file has the following:
 OPENAI_API_KEY="*****"
 ```
 
-A filed named `services/translation.js has the following setup code:
+A filed named `services/translation.js` has the following setup code:
 
 ```
 // NOTE:  These are CommonJS modules and cannot use "import { <name> }" syntax
