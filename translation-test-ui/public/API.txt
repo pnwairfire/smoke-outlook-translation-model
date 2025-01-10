@@ -1,5 +1,5 @@
 {
-  "name": "jon-prompt-engineer",
+  "name": "translation-test-ui",
   "version": "1.0.0",
   "services": {
     "translate": {
