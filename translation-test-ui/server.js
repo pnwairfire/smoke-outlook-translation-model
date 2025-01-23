@@ -10,10 +10,10 @@ dotenv.config({
 const express = require("express");
 const mustacheExpress = require("mustache-express");
 const OpenAIApi = require("openai");
-
+console.log(process.env.api_key)
 // OpenAI API (v4: https://github.com/openai/openai-node/discussions/217)
 const openai = new OpenAIApi({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.api_key,
 });
 
 // Create the ExpressJS app
@@ -38,7 +38,7 @@ app.set("views", __dirname + "/views");
 
 app.get("/", (req, res) => {
   res.render("home", {
-    userName: "Jonathan",
+    userName: "Frankie",
   });
 });
 
@@ -46,7 +46,7 @@ app.post("/translate", async (req, res) => {
   content = req.body.prompt + "\n\n" + req.body.text;
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: "user", content: content }],
-    model: "gpt-4-turbo",
+    model: "gpt-4o",
   });
   const translation = chatCompletion.choices[0].message.content;
   res.render("translation", {
