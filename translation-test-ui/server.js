@@ -10,7 +10,7 @@ dotenv.config({
 const express = require("express");
 const mustacheExpress = require("mustache-express");
 const OpenAIApi = require("openai");
-console.log(process.env.api_key)
+
 // OpenAI API (v4: https://github.com/openai/openai-node/discussions/217)
 const openai = new OpenAIApi({
   apiKey: process.env.api_key,
@@ -41,19 +41,28 @@ app.get("/", (req, res) => {
     userName: "Frankie",
   });
 });
-
-app.post("/translate", async (req, res) => {
-  content = req.body.prompt + "\n\n" + req.body.text;
-  const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: content }],
-    model: "gpt-4o",
+try {
+  app.post("/translate", async (req, res) => {
+    content = req.body.prompt + "\n\n" + req.body.text;
+    const chatCompletion1 = await openai.chat.completions.create({
+      messages: [{ role: "user", content: content }],
+      model: "gpt-4o",
+    });
+    const chatCompletion2 = await openai.chat.completions.create({
+      messages: [{ role: "user", content: content}],
+      model: "gpt-4o-mini" // Change this to ID of our unique trained Chat GPT version ID
+    })
+    const translation1 = chatCompletion1.choices[0].message.content;
+    const translation2 = chatCompletion2.choices[0].message.content
+    res.render("translation", {
+      prompt: req.body.prompt || "No prompt provided",
+      translation1: translation1,
+      translation2: translation2
+    });
   });
-  const translation = chatCompletion.choices[0].message.content;
-  res.render("translation", {
-    prompt: req.body.prompt || "No prompt provided",
-    translation: translation,
-  });
-});
+} catch(error) {
+  console.log('An error occured retrieving or sending your prompt, here is the error: ',error);
+}
 
 // ----- Listen on port 3000 ---------------------------------------------------
 
