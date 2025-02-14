@@ -50,7 +50,7 @@ try {
     });
     const chatCompletion2 = await openai.chat.completions.create({
       messages: [{ role: "user", content: content}],
-      model: "gpt-4o-mini-2024-07-18:airfire::AvdsGrLa" // Change this to ID of our unique trained Chat GPT version ID
+      model: "gpt-4o-mini-2024-07-18" // gpt-4o-mini-2024-07-18:airfire::AyXcOEIT
     })
     const translation1 = chatCompletion1.choices[0].message.content;
     const translation2 = chatCompletion2.choices[0].message.content

@@ -5,8 +5,7 @@
 .DS_Store
 
 # Secret keys
-.env
-
+.envgig
 ################################################################################
 # Default Node project items from: https://github.com/github/gitignore/blob/main/Node.gitignore
 
