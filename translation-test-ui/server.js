@@ -44,18 +44,22 @@ app.get("/", (req, res) => {
 try {
   app.post("/translate", async (req, res) => {
     content = req.body.prompt + "\n\n" + req.body.text;
+    temperature = Number(parseFloat(req.body.temp).toFixed(1));
     const chatCompletion1 = await openai.chat.completions.create({
       messages: [{ role: "user", content: content }],
       model: "gpt-4o-mini",
+      temperature: temperature
     });
     const chatCompletion2 = await openai.chat.completions.create({
       messages: [{ role: "user", content: content}],
-      model: "gpt-4o-mini-2024-07-18" // gpt-4o-mini-2024-07-18:airfire::AyXcOEIT
+      model: "gpt-4o-mini-2024-07-18", // gpt-4o-mini-2024-07-18:airfire::AyXcOEIT
+      temperature: temperature
     })
     const translation1 = chatCompletion1.choices[0].message.content;
     const translation2 = chatCompletion2.choices[0].message.content
     res.render("translation", {
       prompt: req.body.prompt || "No prompt provided",
+      text: req.body.text || "No text provided",
       translation1: translation1,
       translation2: translation2
     });
