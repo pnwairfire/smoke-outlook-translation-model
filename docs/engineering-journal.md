@@ -15,3 +15,6 @@ Members Sam and Yiyu trained a ChatGPT 4o-mini model with a combination of promp
 
 Frankie was accidentally given the FT model id, not the model id. So when updating API calls from the webapp to hit the API endpoint of the newly created trained model, Frankie was recieving a 404 error. This normally means that the endpoint does not exist. Only after leveraging a handy tool called Postman and reading [OPENAI docs](https://platform.openai.com/docs/api-reference/fine-tuning/list) did Frankie find that the full response looked like this: 
 ![alt text](image.png)
+
+# Temperature, the hyperparameter
+ChatGPT has a hyperparameter named: temperature. This hyperparameter deictacts how dilligent or random the incoming inquiry is processed. By including this parameter in the initial form on this webapp's landing page, users can play around with how strict or freeform they want this tool to translate the incoming smoke outlook in English to Spanish.
