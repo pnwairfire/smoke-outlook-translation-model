@@ -48,12 +48,12 @@ try {
     const chatCompletion1 = await openai.chat.completions.create({
       messages: [{ role: "user", content: content }],
       model: "gpt-4o-mini",
-      temperature: temperature
+      temperature: temperature || 0.5
     });
     const chatCompletion2 = await openai.chat.completions.create({
       messages: [{ role: "user", content: content}],
       model: "gpt-4o-mini-2024-07-18", // gpt-4o-mini-2024-07-18:airfire::AyXcOEIT
-      temperature: temperature
+      temperature: temperature || 0.5
     })
     const translation1 = chatCompletion1.choices[0].message.content;
     const translation2 = chatCompletion2.choices[0].message.content
