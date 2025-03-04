@@ -13,7 +13,7 @@ const OpenAIApi = require("openai");
 
 // OpenAI API (v4: https://github.com/openai/openai-node/discussions/217)
 const openai = new OpenAIApi({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.api_key,
 });
 
 // Create the ExpressJS app
@@ -38,22 +38,35 @@ app.set("views", __dirname + "/views");
 
 app.get("/", (req, res) => {
   res.render("home", {
-    userName: "Jonathan",
+    userName: "Frankie",
   });
 });
-
-app.post("/translate", async (req, res) => {
-  content = req.body.prompt + "\n\n" + req.body.text;
-  const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: content }],
-    model: "gpt-4-turbo",
+try {
+  app.post("/translate", async (req, res) => {
+    content = req.body.prompt + "\n\n" + req.body.text;
+    temperature = Number(parseFloat(req.body.temp).toFixed(1));
+    const chatCompletion1 = await openai.chat.completions.create({
+      messages: [{ role: "user", content: content }],
+      model: "gpt-4o",
+      temperature: temperature || 0.7
+    });
+    const chatCompletion2 = await openai.chat.completions.create({
+      messages: [{ role: "user", content: content}],
+      model: "gpt-4o-2024-08-06", // gpt-4o-mini-2024-07-18:airfire::AyXcOEIT
+      temperature: temperature || 0.7
+    })
+    const translation1 = chatCompletion1.choices[0].message.content;
+    const translation2 = chatCompletion2.choices[0].message.content
+    res.render("translation", {
+      prompt: req.body.prompt || "No prompt provided",
+      text: req.body.text || "No text provided",
+      translation1: translation1,
+      translation2: translation2
+    });
   });
-  const translation = chatCompletion.choices[0].message.content;
-  res.render("translation", {
-    prompt: req.body.prompt || "No prompt provided",
-    translation: translation,
-  });
-});
+} catch(error) {
+  console.log('An error occured retrieving or sending your prompt, here is the error: ',error);
+}
 
 // ----- Listen on port 3000 ---------------------------------------------------
 

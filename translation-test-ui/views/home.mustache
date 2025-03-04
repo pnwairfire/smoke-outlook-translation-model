@@ -12,7 +12,7 @@
         <h1>ChatGPT Spanish Translation</h1>
         <div class="alert alert-info" role="alert"
              style="margin: 0rem 2rem">
-          Edit the "Text to translate" and press Submit.<br/>
+          Edit the "Text to translate", add a "Temperature (strictness of the translation)" then press Submit.<br/>
           This will send the prompt and the text to ChatGPT.
         </div>
       </div>
@@ -26,15 +26,17 @@
                  value="Please translate the following text to Spanish:">
           <br/>
           Text to translate: <br/>
-          <input type="text" class="form-control"
+          <input type="text" class="form-control" placeholder="Type here"
                  name="text">
+          <br/>
+          Temperature (0-2* 0 most strict, 2 most freeform/random): <br/>
+          <input type="text" class="form-control" placeholder="0.7"
+                 name="temp">
           <br/>
           <input type="submit" value="OK" class="btn btn-primary">
         </form>
       </div>
-
     </div>
     <!-- END container -->
-
   </body>
 </html>
