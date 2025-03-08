@@ -47,12 +47,12 @@ try {
     temperature = Number(parseFloat(req.body.temp).toFixed(1));
     const chatCompletion1 = await openai.chat.completions.create({
       messages: [{ role: "user", content: content }],
-      model: "gpt-4o",
+      model: "gpt-4o-mini-2024-07-18", // ft:gpt-4o-2024-08-06
       temperature: temperature || 0.7
     });
     const chatCompletion2 = await openai.chat.completions.create({
       messages: [{ role: "user", content: content}],
-      model: "gpt-4o-2024-08-06", // gpt-4o-mini-2024-07-18:airfire::AyXcOEIT
+      model: "ft:gpt-4o-mini-2024-07-18:airfire::AvcWvIA5", // ft:gpt-4o-2024-08-06:airfire::B3RbsDvN
       temperature: temperature || 0.7
     })
     const translation1 = chatCompletion1.choices[0].message.content;
